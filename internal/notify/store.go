@@ -62,6 +62,18 @@ func trim(s string) string { return strings.TrimSpace(s) }
 // clone 返回通知的快照，避免调用方修改内部状态。
 func (n *Notification) clone() *Notification {
 	c := *n
+	if n.SentAt != nil {
+		t := *n.SentAt
+		c.SentAt = &t
+	}
+	if n.ReadAt != nil {
+		t := *n.ReadAt
+		c.ReadAt = &t
+	}
+	if n.ScheduleAt != nil {
+		t := *n.ScheduleAt
+		c.ScheduleAt = &t
+	}
 	return &c
 }
 
